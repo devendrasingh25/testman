@@ -2,7 +2,7 @@
 # Postman Clone
 
 <p align="center">
-  <img src="./public/post-man-clone.png" alt="Postman Clone" width="600"/>
+  <img src="./public/post-man-clone.png" alt="Testman" width="600"/>
 </p>
 
 A modern, open-source **Postman alternative** built with **Next.js 15, TypeScript, Prisma, TailwindCSS, shadcn/ui, TanStack Query, and Zustand**.  

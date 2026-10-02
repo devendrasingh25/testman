@@ -9,7 +9,7 @@ export const initializeWorkspace = async () => {
 
   if (!user) {
     return {
-      success: true,
+      success: false, // was `true`, which reported success when no user was found
       error: "User not found",
     };
   }
@@ -34,9 +34,9 @@ export const initializeWorkspace = async () => {
           },
         },
       },
-      include:{
-        members:true
-      }
+      include: {
+        members: true,
+      },
     });
 
     return {
@@ -52,17 +52,13 @@ export const initializeWorkspace = async () => {
   }
 };
 
-
 export async function getWorkspaces() {
   const user = await currentUser();
   if (!user) throw new Error("Unauthorized");
 
   const workspaces = await db.workspace.findMany({
     where: {
-      OR: [
-        { ownerId: user.id },
-        { members: { some: { userId: user.id } } },
-      ],
+      OR: [{ ownerId: user.id }, { members: { some: { userId: user.id } } }],
     },
     orderBy: { createdAt: "asc" },
   });
@@ -90,8 +86,10 @@ export async function createWorkspace(name: string) {
   return workspace;
 }
 
+export const getWorkspaceById = async (id?: string) => {
+  // Fixes the crash: Prisma throws if `id` is undefined
+  if (!id) return null;
 
-export const getWorkspaceById = async (id: string) => {
   const workspace = await db.workspace.findUnique({
     where: { id },
     include: {
@@ -100,4 +98,3 @@ export const getWorkspaceById = async (id: string) => {
   });
   return workspace;
 };
-
