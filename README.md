@@ -1,143 +1,67 @@
+# Testman
 
-# Postman Clone
+**An API and WebSocket testing platform** for sending HTTP requests, debugging real-time connections, and collaborating with a team, all from the browser.
 
-<p align="center">
-  <img src="./public/post-man-clone.png" alt="Testman" width="600"/>
-</p>
-
-A modern, open-source **Postman alternative** built with **Next.js 15, TypeScript, Prisma, TailwindCSS, shadcn/ui, TanStack Query, and Zustand**.  
-It provides a sleek UI and developer-focused workflow to test and manage REST APIs and WebSocket connections efficiently.
+Live demo: [testman-nu.vercel.app](https://testman-nu.vercel.app/sign-in) &nbsp;|&nbsp; Screenshot: _add `public/screenshot.png`_
 
 ---
 
-## ✨ Features
+## Overview
 
-### 🔹 REST API Client
-- Send HTTP requests with **methods (GET, POST, PUT, DELETE, etc.)**  
-- Manage **request parameters, headers, and body (raw JSON / text)**  
-- **Request response viewer** with pretty JSON formatting  
-- Track **response time, size, and status**  
-- Save requests inside **collections** for reusability  
-- Request history & response persistence  
+Testman is a Postman-style developer tool built with **Next.js 15 and TypeScript**. It combines a REST client, a WebSocket client, and shared team workspaces in one interface, with Gemini-powered assistance for naming requests and generating JSON request bodies.
 
-### 🔹 WebSocket Client
-- Connect to **ws://** and **wss://** endpoints  
-- Send and receive messages in real time  
-- Support for multiple protocols  
-- View messages with metadata (**direction, payload, size, timestamp**)  
-- Save messages for later inspection  
+## Features
 
-### 🔹 Workspace & Collaboration
-- Create and manage **multiple workspaces**  
-- **Invite team members** via unique invite links  
-- Role-based workspace access (Admin, Member)  
-- View workspace members with overlapping avatars and hover tooltips  
+### REST API client
+- Send requests with any HTTP method (GET, POST, PUT, DELETE, and more)
+- Manage query params, headers, and raw JSON/text bodies
+- Pretty-printed JSON responses with status, response time, and size
+- Save requests into collections and revisit them from history; responses are persisted
 
-### 🔹 Additional Utilities
-- Raw request body editor powered by **Monaco Editor**  
-- JSON pretty print & validation  
-- Copy to clipboard & auto-format options  
-- Persistent state management with **Zustand**  
-- Smooth and modern UI with **shadcn/ui + TailwindCSS**  
+### WebSocket client
+- Connect to `ws://` and `wss://` endpoints with multiple protocols
+- Send and receive messages in real time
+- Inspect every message with its direction, payload, size, and timestamp
+- Save messages for later inspection
 
----
+### Workspaces and collaboration
+- Create multiple workspaces
+- Invite teammates with unique invite links
+- Role-based access (Admin, Member)
+- Member avatars with hover tooltips
 
-## 🛠️ Tech Stack
+### AI assistance (Gemini)
+- Suggests names for new requests
+- Generates JSON queries for request bodies
 
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router, Server Actions)  
-- **Language:** TypeScript  
-- **ORM & Database:** Prisma + PostgreSQL  
-- **State Management:** Zustand  
-- **API Caching/Fetching:** TanStack Query  
-- **UI Components:** shadcn/ui + TailwindCSS  
-- **Icons:** Lucide-react  
-- **Editor:** Monaco Editor  
-- **Auth:** Better Auth  
-- **Deployment:** Vercel  
+### Developer experience
+- Raw body editor with JSON validation, auto-format, and copy to clipboard
+- Persistent client state with Zustand
+- Responsive UI built with shadcn/ui and Tailwind CSS
 
----
+## Tech stack
 
-## 🚀 Getting Started
+| Area | Tools |
+| --- | --- |
+| Framework | Next.js 15 (App Router, Server Actions) |
+| Language | TypeScript |
+| Database | PostgreSQL with Prisma ORM |
+| State and data | Zustand, TanStack Query |
+| UI | Tailwind CSS, shadcn/ui, Lucide icons |
+| Editor | Monaco Editor |
+| Auth | Better Auth (GitHub and Google sign-in) |
+| AI | Google Gemini |
+| Deployment | Vercel |
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/Aestheticsuraj234/postman-clone
-cd postman-clone
-````
-
-### 2. Install Dependencies
-
-```bash
-npm install
+## Architecture
 
 ```
-
-### 3. Configure Environment Variables
-
-Create a `.env` file in the root and add:
-
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/postmanclone"
-BETTER_AUTH_SECRET
-BETTER_AUTH_URL=http://localhost:3000 
-
-GITHUB_CLIENT_ID
-GITHUB_CLIENT_SECRET
-
-GOOGLE_CLIENT_ID
-GOOGLE_CLIENT_SECRET
-
-NEXT_PUBLIC_APP_URL
-
-GOOGLE_GENERATIVE_AI_API_KEY
+app/          Routes, API handlers, workspace and invite pages
+components/   Reusable UI components
+modules/      Feature modules: auth, invites, requests, websockets
+lib/          Shared utilities: database, auth, store
 ```
 
-### 4. Setup Database
+## Credits
 
-```bash
-npx prisma migrate dev
-npx prisma db seed   # if you have seeds
-```
-
-### 5. Run the Development Server
-
-```bash
-npm run dev
-```
-
-App will be available at: [http://localhost:3000](http://localhost:3000)
-
----
-
-## 📦 Project Structure
-
-```
-/app
-  /api             → API routes (REST & WebSocket server actions)
-  /(workspace)     → Workspace-specific routes
-  /invite          → Invite link pages
-/components        → Reusable UI components
-/modules           → Features (auth, invites, requests, websockets, etc.)
-/lib               → Utilities (db, auth, store)
-```
-
----
-
-## 🤝 Special Thanks
-
-* **Postman** – for inspiring the core idea
-* **Next.js & Vercel** – for providing a powerful fullstack framework
-* **shadcn/ui** – for beautiful and accessible UI components
-* **TanStack Query & Zustand** – for data and state management
-* All open-source contributors & libraries used in this project 🙏
-
----
-
-
-## 📜 License
-
-This project is **MIT Licensed**.
-Feel free to fork, contribute, and build your own features on top of it!
-
-
-
+Based on the open-source [postman-clone](https://github.com/Aestheticsuraj234/postman-clone) by Aestheticsuraj234, released under the MIT License.
